@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ArticleDao extends JpaRepository<Article, Integer> {
     Optional<Article> findByTitre(String titre);
+
+    Optional<Article> findByTitreAndIdNotEqual(String titre, int id);
 }
