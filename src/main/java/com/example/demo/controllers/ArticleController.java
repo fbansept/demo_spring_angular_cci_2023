@@ -38,4 +38,17 @@ public class ArticleController {
         return new ResponseEntity<>(article,HttpStatus.CREATED);
 
     }
+
+    @DeleteMapping("/article/{id}")
+    public ResponseEntity<Article> suppressionArticle(@PathVariable int id) {
+
+        Optional<Article> articleBdd = articleDao.findById(id);
+
+        if(articleBdd.isPresent()) {
+            articleDao.deleteById(id);
+            return new ResponseEntity<>(articleBdd.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
